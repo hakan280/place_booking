@@ -17,4 +17,12 @@
 
 class Place < ApplicationRecord
   belongs_to :category
+  belongs_to :customer
+
+  validates :name , presence: true
+  validates :description, length: {minimum: 5}
+  validates :city, presence: true
+
+
+
 end
