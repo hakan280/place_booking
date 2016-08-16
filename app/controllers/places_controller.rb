@@ -1,12 +1,13 @@
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show,:edit,:update,:destroy]
-  #before_action :authenticate_owner! , except: [:index,:show]
+  before_action :authenticate_owner! , except: [:index,:show]
 
   def index
     @places = Place.all
   end
 
   def show
+    @comments = @place.comments
   end
 
   def new
@@ -53,6 +54,6 @@ class PlacesController < ApplicationController
     @categories = Category.all.map {|c| [c.name,c.id]}
   end
   def place_params
-    params.require(:place).permit(:name,:address,:phone_number,:established_at,:contact_mail,:city,:description)
+    params.require(:place).permit(:name,:address,:phone_number,:established_at,:contact_mail,:city,:description,:category_id).merge(owner_id: current_owner.id)
   end
 end

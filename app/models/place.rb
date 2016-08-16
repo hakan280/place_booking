@@ -17,7 +17,8 @@
 
 class Place < ApplicationRecord
   belongs_to :category
-  belongs_to :customer
+  belongs_to :owner
+  has_many :comments
 
   validates :name , presence: true
   validates :description, length: {minimum: 5}

@@ -1,2 +1,35 @@
 <h1>Places#index</h1>
 <p>Find me in app/views/places/index.html.erb</p>
+
+
+<table class="table table-striped">
+  <thead>
+    <th>Name</th>
+    <th>City</th>
+    <th>Adress</th>
+    <th>Contact Mail</th>
+  </thead>
+  <tbody>
+    <% @places.each do |place| %>
+        <tr>
+          <td>
+            <%= link_to place.name, place_path(place) %>
+          </td>
+          <td>
+            <%= place.city %>
+          </td>
+          <td>
+            <%= place.address %>
+          </td>
+          <td>
+            <%= place.contact_mail %>
+          </td>
+        </tr>
+    <% end %>
+    <tr>
+
+    </tr>
+
+  </tbody>
+
+</table>

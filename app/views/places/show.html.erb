@@ -1,2 +1,37 @@
 <h1>Places#show</h1>
 <p>Find me in app/views/places/show.html.erb</p>
+
+
+<h3> <%= @place.name %> </h3>
+<p class="lead">Description <%= @place.description %> </p>
+
+<%= form_for [@place, Comment.new] do |f| %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.text_area :body , row: 5 , class: 'form-control'  %>
+
+        </div>
+        <div class="form-group">
+          <%= f.submit 'Send', class: 'btn btn-success' %>
+        </div>
+
+      </div>
+    </div>
+
+<% end %>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Comments</div>
+    <% @comments.each do |comment| %>
+      <div class="panel-body">
+        <%= comment.body %>
+        <span> <%= link_to 'Delete', place_comment_path(@place,comment ), method: :delete, data: {confirm: 'Are you sure ?'} %></span>
+        <span class="pull-right"> <%= comment.customer.email if comment.customer %></span>
+      </div>
+    <% end %>
+</div>
+
+
