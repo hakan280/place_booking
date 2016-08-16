@@ -1,39 +1,45 @@
-<h1>Places#show</h1>
-<p>Find me in app/views/places/show.html.erb</p>
 
+<div class="row" >
+  <div class="col-md-6 ">
+    <h1> <%= @place.name %> </h1>
+    <p class="lead"><%= @place.description %> </p>
+  
+      
+    <div  style="border-top: 2px solid blue; padding: 15px"> </div>
+      <%= form_for [@place, Comment.new] do |f| %>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label "Comment" %>
+                <%= f.text_area :body , row: 5 , class: 'form-control'  %>
+              </div>
+              <div class="form-group">
+                <%= f.submit 'Send', class: 'btn btn-success' %>
+              </div>
 
-<h3> <%= @place.name %> </h3>
-<p class="lead">Description <%= @place.description %> </p>
+            </div>
+          </div>
 
-<%= form_for [@place, Comment.new] do |f| %>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <%= f.text_area :body , row: 5 , class: 'form-control'  %>
-
-        </div>
-        <div class="form-group">
-          <%= f.submit 'Send', class: 'btn btn-success' %>
-        </div>
-
-      </div>
+      <% end %>
     </div>
 
-<% end %>
+  <div class="col-md-6">
+      <div class="pull-right">
+          <%= form_for [@place,Reservation.new] do |f| %>
+            <div class="form-group">
+              <%= f.datetime_select :date , class: 'form-control'%>
+            </div>
+            <div class="form-group">
+              <%= f.number_field :number_of_people, min:1, class:'form-control input-sm' %>
+            </div>
+            <div class="form-group">
+              <%= f.submit 'Make Reservation', class: 'btn btn-success' %>
+            </div>
 
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading">Comments</div>
-    <% @comments.each do |comment| %>
-      <div class="panel-body">
-        <%= comment.body %>
-        <% if current_customer.present? and comment.customer.id == current_customer.id  %>
-            <span> <%= link_to 'Delete', place_comment_path(@place,comment ), method: :delete, data: {confirm: 'Are you sure ?'} %></span>
-        <% end %>
-        <span class="pull-right"> <%= comment.customer.email %></span>
-      </div>
-    <% end %>
+            <% end %>
+            <%= link_to 'Show Reservations', place_reservations_path(@place), class: 'btn btn-info' %>
+        </div>
+  </div>
 </div>
 
-
+<%= render partial: 'comments/comments_list', locals: {comments: @place.comments } %>

@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <table class="table table-striped">
+      <thead>
+      <th>User</th>
+      <th>Place</th>
+      <th>Date Time</th>
+      <th>Number of People</th>
+      </thead>
+      <% @reservations.each do |r| %>
+          <tr>
+            <td> <%= r.customer.email %></td>
+            <td> <%= r.place.name %></td>
+            <td> <%= r.date.strftime("%d %B %Y  %H:%M") %></td>
+            <td> <%= r.number_of_people %></td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

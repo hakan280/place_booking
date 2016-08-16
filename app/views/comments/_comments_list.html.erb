@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Comments</div>
+      <% comments.each do |comment| %>
+          <div class="panel-body">
+            <%= comment.body %>
+            <% if current_customer.present? and comment.customer.id == current_customer.id  %>
+                <span> <%= link_to 'Delete', place_comment_path(@place,comment ), method: :delete, data: {confirm: 'Are you sure ?'} %></span>
+            <% end %>
+            <span class="pull-right"> <%= comment.customer.email %></span>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

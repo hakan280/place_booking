@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
 
   private
   def authorize_customer!
-    redirect_to @place, notice: "Not authorized" unless @comment.customere_id == current_customer.id
+    redirect_to @place, notice: "Not authorized" unless @comment.customer_id == current_customer.id
   end
   def set_comment
     @comment = Comment.find(params[:id])

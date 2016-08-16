@@ -2,10 +2,13 @@ Rails.application.routes.draw do
 
 
 
+
+
   devise_for :owners
   devise_for :customers
 
   resources :places do
+    resources :reservations , only: [:create,:index]
     resources :comments , only: [:create,:destroy]
   end
   root to:'places#index'
