@@ -1,13 +1,8 @@
 
 <div class="row">
+
   <div class="col-md-6">
-    <% unless @place.errors.empty? %>
-       <% @place.errors.full_messages.each do |message| %>
-          <p class="alert alert-danger">
-            <%= message %>
-          </p>
-        <% end %>
-    <% end %>
+
     <%= form_for @place do |f| %>
       <div class="form-group">
         <%= f.label :Name %>
@@ -31,7 +26,8 @@
         <%= f.text_field :description , class: 'form-control' %>
       </div>
       <div class="form-group">
-         <%= f.select :category_id %>
+        <%= f.label :Category , class:'form-control' %>
+         <%= f.select :category_id, @categories, class: 'form-control' %>
       </div>
       <div class="form-group">
         <%= f.submit 'Send', class: 'btn btn-success' %>
@@ -40,5 +36,14 @@
     <% end %>
 
 
+  </div>
+  <div class="col-md-6">
+    <% unless @place.errors.empty? %>
+        <% @place.errors.full_messages.each do |message| %>
+            <p class="alert alert-danger">
+              <%= message %>
+            </p>
+        <% end %>
+    <% end %>
   </div>
 </div>

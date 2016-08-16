@@ -19,6 +19,7 @@ class PlacesController < ApplicationController
     if @place.save
       redirect_to @place
     else
+      load_categories
       render 'new'
     end
 
@@ -49,7 +50,7 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
   end
   def load_categories
-    @categories = Category.all.map {|c| [c.title,c.id]}
+    @categories = Category.all.map {|c| [c.name,c.id]}
   end
   def place_params
     params.require(:place).permit(:name,:address,:phone_number,:established_at,:contact_mail,:city,:description)

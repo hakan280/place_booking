@@ -13,5 +13,5 @@
     Category.create(name: 'Alakart')
     Category.create(name: 'Çay Bahçesi')
 
-    Place.create(name: "Muğla Keşkek Evi",description: 'Muğlanın meşhur lezzetli keşkek', city: 'Muğla', phone_number: '5553999879', address: 'Menteşe Evleri No:60', contact_mail: 'abc@mugla.com', user_id: 1, category_id: 1)
-    Place.create(name: "Bolu Çiğ köfte",description: '1960\'den beri Bolu müthiş lezzettli çiğ köftecisi  ' , city: 'Bolu', phone_number: '5553999879', address: 'Bolu Merkez', contact_mail: 'xyz@mugla.com', user_id: 2, category_id: 2)
+    Place.create(name: "Muğla Keşkek Evi",description: 'Muğlanın meşhur lezzetli keşkek', city: 'Muğla', phone_number: '5553999879', address: 'Menteşe Evleri No:60', contact_mail: 'abc@mugla.com', owner_id: 1, category_id: 1)
+    Place.create(name: "Bolu Çiğ köfte",description: '1960\'den beri Bolu müthiş lezzettli çiğ köftecisi  ' , city: 'Bolu', phone_number: '5553999879', address: 'Bolu Merkez', contact_mail: 'xyz@mugla.com', owner_id: 2, category_id: 2)

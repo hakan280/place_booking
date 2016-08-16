@@ -22,7 +22,7 @@ class Place < ApplicationRecord
   validates :name , presence: true
   validates :description, length: {minimum: 5}
   validates :city, presence: true
-
+  validates :contact_mail, format: {with: /\A.+@.+\z/}
 
 
 end
