@@ -28,8 +28,10 @@
     <% @comments.each do |comment| %>
       <div class="panel-body">
         <%= comment.body %>
-        <span> <%= link_to 'Delete', place_comment_path(@place,comment ), method: :delete, data: {confirm: 'Are you sure ?'} %></span>
-        <span class="pull-right"> <%= comment.customer.email if comment.customer %></span>
+        <% if current_customer.present? and comment.customer.id == current_customer.id  %>
+            <span> <%= link_to 'Delete', place_comment_path(@place,comment ), method: :delete, data: {confirm: 'Are you sure ?'} %></span>
+        <% end %>
+        <span class="pull-right"> <%= comment.customer.email %></span>
       </div>
     <% end %>
 </div>
