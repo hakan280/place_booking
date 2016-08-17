@@ -19,6 +19,8 @@ class Place < ApplicationRecord
   belongs_to :category
   belongs_to :owner
   has_many :comments
+  has_one :social_profile
+  accepts_nested_attributes_for :social_profile
 
   validates :name , presence: true
   validates :description, length: {minimum: 5}

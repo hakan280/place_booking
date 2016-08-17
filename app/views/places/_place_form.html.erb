@@ -29,6 +29,21 @@
         <%= f.label :Category , class:'form-control' %>
          <%= f.select :category_id, @categories, class: 'form-control' %>
       </div>
+
+        <%= f.fields_for :social_profile do |sf| %>
+          <h3>Social Profile</h3>
+          <%= sf.label :facebook %>
+          <%= sf.text_field :facebook, placeholder: 'Facebook', class: "form-control input-sm" %><br />
+          <%= sf.label :instagram %>
+          <%= sf.text_field :instagram, placeholder: 'instagram', class: "form-control input-sm" %><br />
+          <%= sf.label :twitter %>
+          <%= sf.text_field :twitter, placeholder: 'twitter', class: "form-control input-sm" %><br />
+          <%= sf.label :foursquare %>
+          <%= sf.text_field :foursquare, placeholder: 'foursquare', class: "form-control input-sm" %><br />
+        <% end %>
+
+
+
       <div class="form-group">
         <%= f.submit 'Send', class: 'btn btn-success' %>
       </div>

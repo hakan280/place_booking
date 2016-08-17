@@ -12,7 +12,7 @@ class PlacesController < ApplicationController
 
   def new
     @place = Place.new
-    load_categories
+    load_form_data
   end
 
   def create
@@ -20,14 +20,14 @@ class PlacesController < ApplicationController
     if @place.save
       redirect_to @place
     else
-      load_categories
+      load_form_data
       render 'new'
     end
 
   end
 
   def edit
-    load_categories
+    load_form_data
   end
 
   def update
@@ -36,7 +36,7 @@ class PlacesController < ApplicationController
       redirect_to @place, notice: 'Place was successfuly updated'
     else
       render 'edit'
-      load_categories
+      load_form_data
     end
 
   end
@@ -56,6 +56,7 @@ class PlacesController < ApplicationController
   end
   def load_categories
     @categories = Category.all.map {|c| [c.name,c.id]}
+    @place.build_social_profile
   end
   def place_params
     params.require(:place).permit(:name,:address,:phone_number,:established_at,:contact_mail,:city,:description,:category_id).merge(owner_id: current_owner.id)
