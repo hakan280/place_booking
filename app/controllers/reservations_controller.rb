@@ -1,9 +1,10 @@
 class ReservationsController < ApplicationController
   def create
       @reservation = Reservation.new(reservation_params)
-      redirect_to places_path(place_id: params[:place_id]), notice: "Your reservation succesfully"
+      if @reservation.save
+        redirect_to place_path(id: params[:place_id]), notice: "Your reservation succesfully"
+      end
   end
-
   def show
   end
 
