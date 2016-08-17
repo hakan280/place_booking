@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @place.comments.new(body: params[:comment][:body], customer_id: current_customer.id, place_id: @place.id)
     if @comment.save
+      CommentMailer.new_comment(@place).deliver_now # send mail to notify owner when new comment
       redirect_to @place
     else
       redirect_to @place, notice: 'Comment is not valid'
