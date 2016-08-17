@@ -41,6 +41,10 @@ class PlacesController < ApplicationController
 
   end
 
+  def authorize_owner!
+    redirect_to @place, notice: "Not authorized" unless @place.owner_id == current_owner.id
+  end
+
   def destroy
     @place.destroy
     redirect_to places_path
