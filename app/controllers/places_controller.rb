@@ -54,11 +54,12 @@ class PlacesController < ApplicationController
   def set_place
     @place = Place.find(params[:id])
   end
-  def load_categories
+  def load_form_data
     @categories = Category.all.map {|c| [c.name,c.id]}
     @place.build_social_profile
   end
   def place_params
-    params.require(:place).permit(:name,:address,:phone_number,:established_at,:contact_mail,:city,:description,:category_id).merge(owner_id: current_owner.id)
+    params.require(:place).permit(:name,:address,:phone_number,:established_at,:contact_mail,:city,:description,:category_id,
+                                  social_profile_attributes: [:id, :facebook, :twitter, :instagram, :foursquare]).merge(owner_id: current_owner.id)
   end
 end

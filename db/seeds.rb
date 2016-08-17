@@ -5,10 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-    o1 = Owner.create(email: 'kara@hotmail.com', encrypted_password: '123456')
-    Owner.create(email: 'hakan@hotmail.com', encrypted_password: '123456')
-    c1 = Customer.create(email: 'kara@hotmail.com', encrypted_password: '123456')
-    Customer.create(email: 'hakan@hotmail.com', encrypted_password: '123456')
+    o1 = Owner.new(email: 'kara@gmail.com', password: '123456')
+    o1.save
+    Owner.create(email: 'hakan@gmail.com', password: '123456')
+    c1 = Customer.new(email: 'kara@gmail.com', password: '123456')
+    c1.save
+    Customer.create(email: 'hakan@gmail.com', password: '123456')
 
     Category.create(name: 'Bar')
     Category.create(name: 'Restaurant')

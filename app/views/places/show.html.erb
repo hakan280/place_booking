@@ -4,6 +4,14 @@
     <h1> <%= @place.name %> <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-info' %> </h1>
 
     <p class="lead"><%= @place.description %> </p>
+    
+    <ul>
+      <li><span class="text-primary">Facebook: </span> <%= @place.social_profile.facebook %></li>
+      <li><span class="text-primary">Twitter: </span> <%= @place.social_profile.twitter %></li>
+      <li><span class="text-primary">Instagram: </span> <%= @place.social_profile.instagram %></li>
+      <li><span class="text-primary">Foursquare: </span> <%= @place.social_profile.foursquare %></li>
+
+    </ul>
   
     <small> <%= @place.owner.email %></small>
     <div  style="border-top: 2px solid blue; padding: 15px"> </div>
