@@ -3,6 +3,7 @@ class ReservationsController < ApplicationController
   def create
         @reservation = Reservation.new(reservation_params)
         if @reservation.save
+          ReservationMailer.new_reservation(@reservation).deliver_now
           redirect_to place_path(id: params[:place_id]), notice: "Your reservation succesfully"
         end
   end
